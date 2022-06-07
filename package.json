@@ -1,0 +1,24 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitoko1/weatherAPP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitoko1/weatherAPP/issues"
+  },
+  "homepage": "https://github.com/vitoko1/weatherAPP#readme",
+  "keywords": [],
+  "dependencies": {
+    "node-fetch": "^3.2.5"
+  }
+}
