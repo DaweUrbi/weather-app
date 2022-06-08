@@ -8,6 +8,8 @@ body {
 }
 
 header h1 {
+  min-width: 375px;
+  max-width: 1440px;
   text-align: center;
   padding-top: 3rem;
 }
@@ -20,22 +22,33 @@ header h1 {
 
 .main-section {
   display: flex;
+  padding: 25px;
+  //margin: 20px;
+  //border: 1px dashed goldenrod;
 }
+
+//* Favorite cities (Select)
 .select-favorite-cities {
-  margin: 20px;
-  width: 50%;
+  margin-right: auto;
 }
 
+//* Search bar cities (Input-text)
 .search-bar-cities {
-  width: 50%;
-  margin: 20px;
-  text-align: right;
+  margin-left: auto;
 }
 
-#current-weather-h3{
+//? Current Weather (start)
+
+#current-weather-h3 {
   margin: 20px;
+  margin-bottom: -20px;
 }
 .in-flex-current-weather {
+  /*   flex: 3;
+  padding: 25px;
+  margin: 20px;
+  margin-bottom: 0px;
+  background-color: #fff; */
   flex: 3;
   padding: 25px;
   margin: 20px;
@@ -43,26 +56,38 @@ header h1 {
   background-color: #fff;
 }
 
-//City Name
+//* City Name (h1)
 .in-flex-current-weather h1 {
   text-align: center;
 }
 
-//Name City
+//* Name City (label)
 .label-cities {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
+}
+
+#weather-info-h3 {
+  text-align: center;
+  padding-top: 60px;
+
 }
 
 .weather-info {
   background-color: rgb(214, 218, 228);
-  height: 120px;
-  width: 30%;
   margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 300px;
+  height: 150px;
+  margin-top: 10px;
+}
+//? Current Weather (End)
+
+//? Daily Forecast (Start)
+#daily-forecast-h3 {
+  margin: 20px;
+  margin-bottom: -20px;
 }
 
 .in-flex-daily-forescat {
@@ -71,14 +96,9 @@ header h1 {
   margin: 20px;
   margin-bottom: 0px;
   background-color: #fff;
-}
-
-.in-flex-daily-forecast {
-  flex: 3;
-  padding: 25px;
-  margin: 20px;
-  margin-bottom: 0px;
-  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .days {
@@ -90,13 +110,33 @@ header h1 {
   margin-left: 55px;
   margin-top: 20px;
 }
+//? Daily Forecast (End)
+
+//? Hourly Forecast (Start)
+#hourly-forecast-h3 {
+  margin: 20px;
+  margin-bottom: -20px;
+}
+
+.in-flex-hourly-forecast {
+  flex: 3;
+  padding: 25px;
+  margin: 20px;
+  margin-bottom: 0px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .hours {
   display: inline-block;
   background-color: rgb(214, 218, 228);
   padding: 20px;
-  height: 70px;
-  width: 50px;
+  height: 140px;
+  width: 70px;
   margin-left: 15px;
-  margin-top: 20px;
+  margin-top: 10px;
+  text-align: center;
 }
+// ? Hourly Forecast (End)
