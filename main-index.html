@@ -86,7 +86,11 @@
 
     <script>
         function placeSearch() {
-            const input = document.getElementById('search_input');
+            let options = {
+                types: ['(cities)'],
+            };
+
+            let input = document.getElementById('search_input');
             let searchBox = new google.maps.places.SearchBox(input);
         }
     </script>
