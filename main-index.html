@@ -2,31 +2,7 @@
 <html lang="en">
 
 <head>
-
-    <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcbVu38MCrM4_okhOMZdMTIViVO1Nojxk&libraries=places&callback=initMap">
-    </script>
-    <script 
-        src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-    </script>
-    <script>
-        let searchInput = 'search_input';
-
-        $(document).ready(function () {
-            let autocomplete;
-            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-                types: ['(cities)'],
-            });
-        console.log(autocomplete);
-            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                let near_place = autocomplete.getPlace();
-                document.getElementById('loc_lat').value = near_place.geometry.location.lat();
-                document.getElementById('loc_long').value = near_place.geometry.location.lng();
-            });
-        });
-    </script>
-
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather APP</title>
@@ -107,6 +83,17 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function placeSearch() {
+            const input = document.getElementById('search_input');
+            let searchBox = new google.maps.places.SearchBox(input);
+        }
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcbVu38MCrM4_okhOMZdMTIViVO1Nojxk&libraries=places&callback=placeSearch">
+    </script>
+
 </body>
 
 </html>

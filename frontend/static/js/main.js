@@ -17,6 +17,4 @@ const callAPI=  function getWeather(cityName) {
 
 
   callAPI('Vancouver');
-  
 
- 
