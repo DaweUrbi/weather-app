@@ -7,17 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="frontend/static/css/style.css">
     <title>Weather APP</title>
-
-
 </head>
 
-    <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcbVu38MCrM4_okhOMZdMTIViVO1Nojxk&libraries=places&callback=initMap">
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcbVu38MCrM4_okhOMZdMTIViVO1Nojxk&libraries=places&callback=initMap">
     </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script>
+<script>
     let searchInput = 'search_input';
 
     $(document).ready(function () {
@@ -26,28 +24,36 @@
             types: ['(cities)'],
 
         });
-	
+
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             let near_place = autocomplete.getPlace();
             document.getElementById('loc_lat').value = near_place.geometry.location.lat();
             document.getElementById('loc_long').value = near_place.geometry.location.lng();
         });
     });
-    </script>
+</script>
 
 <body>
-    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet nulla, accusantium inventore libero, iusto
-        natus maxime
-        modi molestias magnam aperiam laboriosam, cum voluptate laborum vero explicabo minus nostrum minima vitae. </p>
-    <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure pariatur totam nihil inventore placeat? Iste iure
-        nemo amet, fugiat, ipsam dolore, temporibus dolor veniam obcaecati iusto vitae. Ratione, cum odit.
-        By Eduardo
-    </div>
-    <label for="search_input">City:</label>
-    <input type="text" id="search_input" placeholder="Enter city name">
+    <header>
+        <h1>Weather App</h1>
+    </header>
+    <section class="in-flex">
+        <div class="main-selection">
+            <div class="select-favorite-cities">
+                <select id="select-favorite-cities"></select>
+            </div>
+            <div class="search-bar-cities"></div>
+            <h3 id="current-weather-h3">Current Weather</h3>
+            <div class="in-flex-current-weather">
+                <div class="label-cities">
+                    <div class="weather-info"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    
+
+    <script type="module" src="frontend/static/js/main.js"></script>
 </body>
 
 </html>
