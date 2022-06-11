@@ -3,7 +3,7 @@ import WEATHER_API_KEY from './key.js';
 //fetch = require("node-fetch");
 //WEATHER_API_KEY= require ( "./key.js");
 
-window.onload = function triggerPage(){
+window.onload = function triggerPage() {
   callLatandLon("Vancouver");
 
 }
@@ -62,18 +62,16 @@ const callAPI1 = function getWeatherFull(lat, lon) {
 
 }
 
-const currentWeather = function () {
-  let newSection = document.createElement('section');
-  newSection.className = 'in-flex';
 
+const drawMainSectionInfo = function () {
   let divMainSection = document.createElement('div');
   divMainSection.className = 'main-section';
 
   let divSelectFavoriteCities = document.createElement('div');
   divSelectFavoriteCities.className = 'select-favorite-cities';
 
-  let newSelect = document.createElement('Select');
-  newSelect.id = 'filter-select';
+  let selectFavoriteCities = document.createElement('Select');
+  selectFavoriteCities.id = 'filter-select';
 
   let optionFilter = document.createElement('option');
   optionFilter.value = 'favorite-cities';
@@ -82,25 +80,100 @@ const currentWeather = function () {
   let divSearchBarCities = document.createElement('div');
   divSearchBarCities.className = 'search-bar-cities';
 
-  let newInput = document.createElement('input');
-  newInput.id = 'search-input';
-  newInput.placeholder = 'Enter City Name';
+  let inputSearchBarCities = document.createElement('input');
+  inputSearchBarCities.id = 'search-input';
+  inputSearchBarCities.placeholder = 'Enter City Name';
 
-  //! Add H3 <h3 id="current-weather-h3">Current Weather</h3>
+  let sectionToBody = document.getElementById("in-flex");
+
+  sectionToBody.appendChild(divMainSection);
+  divMainSection.appendChild(divSelectFavoriteCities);
+  divSelectFavoriteCities.appendChild(selectFavoriteCities);
+  selectFavoriteCities.appendChild(optionFilter);
+  divMainSection.appendChild(divSearchBarCities);
+  divSearchBarCities.appendChild(inputSearchBarCities);
+
+}
+
+const drawCurrentWeather = function (d) {
+
+  const currentTemp = d.current.temp;
+  const feelsLike = d.current.feels_like;
+  const timeZone = d.timezone;
+  const uvi = d.current.uvi;
+  const humidity = d.current.humidity;
+
+  let h3CurrentWeather = document.createElement('h3');
+  h3CurrentWeather.id = 'h3-current-weather';
+  h3CurrentWeather.textContent = "Current Weather";
 
   let divInFlexCurrentWeather = document.createElement('div');
   divInFlexCurrentWeather.className = 'in-flex-current-weather';
 
-  //! <h1>City Name</h1> 
+  let h1CityName = document.createElement('h1');
+  h1CityName.id = 'h1-city-name';
+  h1CityName.textContent = "City Name";
 
-  let newLabel = document.createElement('label');
-  newLabel.className = 'label-cities';
+  let labelNameCity = document.createElement('label');
+  labelNameCity.className = 'label-cities';
+  labelNameCity.textContent = timeZone;
 
   let divWeatherInfo = document.createElement('div');
   divWeatherInfo.className = 'weather-info';
 
-  
+  let h3WeatherInfo = document.createElement('h3');
+  h3WeatherInfo.id = 'h3-weather-info';
+  h3WeatherInfo.textContent = "Weather Information";
 
+  let pCurrentTemp = document.createElement('p');
+  pCurrentTemp.id = 'p-current-temp';
+  pCurrentTemp.textContent = "Current Temperature: ";
+
+  let labelCurrentTemp = document.createElement('label');
+  labelCurrentTemp.id = 'label-current-temp';
+  labelCurrentTemp.textContent = currentTemp + "°";
+
+  let pFeelsLike = document.createElement('p');
+  pFeelsLike.id = 'p-feels-like';
+  pFeelsLike.textContent = "Feels like: ";
+
+  let labelFeelsLike = document.createElement('label');
+  labelFeelsLike.id = 'label-feels-like';
+  labelFeelsLike.textContent = feelsLike + "°";
+
+  let pUvi = document.createElement('p');
+  pUvi.id = 'p-uvi';
+  pUvi.textContent = "uvi: ";
+
+  let labelUvi = document.createElement('label');
+  labelUvi.id = 'label-uvi';
+  labelUvi.textContent = uvi + "°";
+
+  let pHumidity = document.createElement('p');
+  pHumidity.id = 'p-humidity';
+  pHumidity.textContent = "Humidity: ";
+
+  let labelHumidity = document.createElement('label');
+  labelHumidity.id = 'label-humidity';
+  labelHumidity.textContent = humidity + "°";
+
+
+  let sectionToBody = document.getElementById("in-flex");
+
+  sectionToBody.appendChild(h3CurrentWeather);
+  sectionToBody.appendChild(divInFlexCurrentWeather);
+  divInFlexCurrentWeather.appendChild(h1CityName);
+  divInFlexCurrentWeather.appendChild(labelNameCity);
+  divInFlexCurrentWeather.appendChild(divWeatherInfo);
+  divWeatherInfo.appendChild(h3WeatherInfo);
+  divWeatherInfo.appendChild(pCurrentTemp);
+  pCurrentTemp.appendChild(labelCurrentTemp);
+  pCurrentTemp.appendChild(pFeelsLike);
+  pFeelsLike.appendChild(labelFeelsLike);
+  pFeelsLike.appendChild(pUvi);
+  pUvi.appendChild(labelUvi);
+  pUvi.appendChild(pHumidity);
+  pHumidity.appendChild(labelHumidity);
 
 }
 
@@ -108,10 +181,11 @@ const currentWeather = function () {
 function drawWeather(d) {
 
   console.log(d)
+  drawMainSectionInfo();
+  drawCurrentWeather(d);
   drawhourlyForecast(d);
   return d;
 }
-
 
 const drawhourlyForecast = function (d) {
   console.log('HOURLY');
