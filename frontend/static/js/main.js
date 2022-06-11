@@ -1,5 +1,12 @@
 import WEATHER_API_KEY from './key.js';
-import fetch from "node-fetch";
+//import fetch from "node-fetch";
+//fetch = require("node-fetch");
+//WEATHER_API_KEY= require ( "./key.js");
+
+window.onload = function triggerPage(){
+  callLatandLon("Vancouver");
+
+}
 
 
 const callLatandLon = function getLatAndLon(cityName) {
@@ -21,7 +28,7 @@ const callLatandLon = function getLatAndLon(cityName) {
 }
 
 //callAPI('Vancouver');
-callLatandLon('Vancouver');
+//callLatandLon('Vancouver');
 
 
 
