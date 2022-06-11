@@ -2,7 +2,6 @@ import WEATHER_API_KEY from './key.js';
 import fetch from "node-fetch";
 
 
-
 const callLatandLon = function getLatAndLon(cityName) {
 
   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + WEATHER_API_KEY.WEATHER_API_KEY)
@@ -93,7 +92,7 @@ const currentWeather = function () {
   let divWeatherInfo = document.createElement('div');
   divWeatherInfo.className = 'weather-info';
 
-
+  
 
 
 }
@@ -101,47 +100,9 @@ const currentWeather = function () {
 // here we draw all the jsonResponse into our webPage (dinamically or by DOM)
 function drawWeather(d) {
 
-  //console.log(d)
-  drawhourlyForecast(d);
+  console.log(d)
+
   return d;
-}
-
-
-const drawhourlyForecast = function (d) {
-  console.log('HOURLY');
-  console.log(d.hourly[0].dt);
-  console.log(d.hourly[1].dt);
-  console.log(d.hourly[2].dt);
-  console.log(d.hourly.length);
-
-
-  const d1 = new Date(d.hourly[0].dt * 1000);
-  const d2 = new Date(d.hourly[3].dt * 1000);
-  const d3 = new Date(d.hourly[6].dt * 1000);
-  const d4 = new Date(d.hourly[9].dt * 1000);
-  const d5 = new Date(d.hourly[12].dt * 1000);
-  const d6 = new Date(d.hourly[15].dt * 1000);
-  const d7 = new Date(d.hourly[18].dt * 1000);
-  const d8 = new Date(d.hourly[21].dt * 1000);
-
-
-  //to get the proper tome zone (vancouver time )
-  // d1.setHours(d1.getHours() - 7);
-  // d2.setHours(d1.getHours() - 7);
-  // d3.setHours(d1.getHours() - 7);
-
-  console.log(d1.toUTCString());
-  console.log(d2.toUTCString());
-  console.log(d3.toUTCString());
-  console.log(d4.toUTCString());
-  console.log(d5.toUTCString());
-  console.log(d6.toUTCString());
-  console.log(d7.toUTCString());
-  console.log(d8.toUTCString());
-  //console.log(m); 
-
-  //var date = new Date(d * 1000);
-
 }
 
 
