@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather APP</title>
+    <title>Weather APP DESIGN</title>
     <link rel="stylesheet" href="frontend/static/css/style.css">
 </head>
 
@@ -14,6 +14,7 @@
         <h1>Weather App</h1>
     </header>
     <section class="in-flex">
+        <!--? Main Section Method End-->
         <div class="main-section">
             <div class="select-favorite-cities">
                 <select id="select-favorite-cities" name="favorite-cities">
@@ -24,14 +25,23 @@
                 <input type="text" id="search_input" placeholder="Enter city name">
             </div>
         </div>
-        <h3 id="current-weather-h3">Current Weather</h3>
+        <!--? Main Section Method End-->
+
+        <!--? Eduardo Method Start-->
+        <h3 id="h3-current-weather">Current Weather</h3>
         <div class="in-flex-current-weather">
-            <h1>City Name</h1>
+            <h1 id="h1-city-name">City Name</h1>
+            <button id="btn-save-fatorite-city">Save</button>
             <label class="label-cities">#C</label>
             <div class="weather-info">
-               <h3 id="weather-info-h3"> Weather Info  </h3>
+               
+                <!--* <h3 id="h3-weather-info"> Weather Info </h3>-->
+                
             </div>
         </div>
+        <!--? Eduardo Method End-->
+
+        <!--? David Method Start-->
         <h3 id="daily-forecast-h3">Daily Forecast - 5 days</h3>
         <div class="in-flex-daily-forescat">
             <div class="daily-forecast">
@@ -53,6 +63,9 @@
 
             </div>
         </div>
+        <!--? David Method End-->
+
+        <!--? Victor Method Start-->
         <h3 id="hourly-forecast-h3">Hourly Forecast</h3>
         <div class="in-flex-hourly-forecast">
             <div class="hour-range">
@@ -82,6 +95,7 @@
                 </div>
             </div>
         </div>
+        <!--? Victor Method End-->
     </section>
 
     <script>
@@ -96,7 +110,7 @@
     </script>
     <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcbVu38MCrM4_okhOMZdMTIViVO1Nojxk&libraries=places&callback=placeSearch">
-    </script>
+        </script>
 
 </body>
 

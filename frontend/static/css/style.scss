@@ -39,7 +39,7 @@ header h1 {
 
 //? Current Weather (start)
 
-#current-weather-h3 {
+#h3-current-weather {
   margin: 20px;
   margin-bottom: -20px;
 }
@@ -64,9 +64,10 @@ header h1 {
   margin-top: 10px;
 }
 
-#weather-info-h3 {
+#h3-weather-info {
   text-align: center;
-  padding-top: 60px;
+  padding-top: 5px;
+  font-size: 14px;
 
 }
 
