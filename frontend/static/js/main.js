@@ -188,6 +188,7 @@ const drawFiveDays = function (d) {
   divInFlexdailyWeather.className = 'in-flex-daily-weather';
 
   for (let i = 1; i < 6; i++) {
+    const date = new Date (d.daily[i].dt * 1000);
     const dailyDayTemp = d.daily[i].temp.day;
     const dailyNightTemp = d.daily[i].temp.night;
     const sunsire = new Date (d.daily[i].sunrise * 1000);
@@ -200,6 +201,14 @@ const drawFiveDays = function (d) {
     let h3WeatherInfo = document.createElement('h3');
     h3WeatherInfo.id = 'h3-weather-info';
     h3WeatherInfo.textContent = "Weather Information";
+
+    let pDate = document.createElement('p');
+    pDate.id = 'p-date'; 
+    pDate.textContent = "Date: ";
+
+    let labelDate = document.createElement('label');
+    labelDate.id = 'label-date';
+    labelDate.textContent = date.toLocaleDateString();
 
     let pDailyDayTemp = document.createElement('p');
     pDailyDayTemp.id = 'p-daily-day-temp';
@@ -239,6 +248,8 @@ const drawFiveDays = function (d) {
     sectionToBody.appendChild(divInFlexdailyWeather);
     divInFlexdailyWeather.appendChild(divWeatherInfo);
     divWeatherInfo.appendChild(h3WeatherInfo);
+    divWeatherInfo.appendChild(pDate);
+    pDate.appendChild(labelDate);
     divWeatherInfo.appendChild(pDailyDayTemp);
     pDailyDayTemp.appendChild(labelDailyDayTemp);
     pDailyDayTemp.appendChild(pDailyNightTemp);
