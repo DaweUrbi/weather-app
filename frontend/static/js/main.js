@@ -100,7 +100,10 @@ const drawCurrentWeather = function (d) {
 
   const currentTemp = d.current.temp;
   const feelsLike = d.current.feels_like;
-  const timeZone = d.timezone;
+  let cityName= d.timezone.toString();
+
+  cityName = cityName.split("/").pop();
+
   const uvi = d.current.uvi;
   const humidity = d.current.humidity;
 
@@ -117,7 +120,7 @@ const drawCurrentWeather = function (d) {
 
   let labelNameCity = document.createElement('label');
   labelNameCity.className = 'label-cities';
-  labelNameCity.textContent = timeZone;
+  labelNameCity.textContent = cityName;
 
   let divWeatherInfo = document.createElement('div');
   divWeatherInfo.className = 'weather-info';
@@ -185,7 +188,7 @@ const drawFiveDays = function (d) {
   h3dailyWeather.textContent = "Daily Weather";
 
   let divInFlexdailyWeather = document.createElement('div');
-  divInFlexdailyWeather.className = 'in-flex-daily-weather';
+  divInFlexdailyWeather.className = 'in-flex-daily-forescat';
 
 
   for (let i = 1; i < 6; i++) {
@@ -288,20 +291,14 @@ function drawWeather(d) {
   console.log(d)
   drawMainSectionInfo();
   drawCurrentWeather(d);
-  drawhourlyForecast(d);
   drawFiveDays(d);
+  drawhourlyForecast(d);
   placeSearch();
   return d;
 }
 
 const drawhourlyForecast = function (d) {
-  console.log('HOURLY');
-  console.log(d.hourly[0].dt);
-  console.log(d.hourly[1].dt);
-  console.log(d.hourly[2].dt);
-  console.log(d.hourly.length);
-
-
+  //console.log('HOURLY');
   const d1 = new Date(d.hourly[0].dt * 1000);
   const d2 = new Date(d.hourly[3].dt * 1000);
   const d3 = new Date(d.hourly[6].dt * 1000);
@@ -311,23 +308,86 @@ const drawhourlyForecast = function (d) {
   const d7 = new Date(d.hourly[18].dt * 1000);
   const d8 = new Date(d.hourly[21].dt * 1000);
 
-
   //to get the proper tome zone (vancouver time )
   // d1.setHours(d1.getHours() - 7);
   // d2.setHours(d1.getHours() - 7);
   // d3.setHours(d1.getHours() - 7);
 
-  console.log(d1.toUTCString());
-  console.log(d2.toUTCString());
-  console.log(d3.toUTCString());
-  console.log(d4.toUTCString());
-  console.log(d5.toUTCString());
-  console.log(d6.toUTCString());
-  console.log(d7.toUTCString());
-  console.log(d8.toUTCString());
+  // console.log(d1.toUTCString());
+  // console.log(d2.toUTCString());
+  // console.log(d3.toUTCString());
+  // console.log(d4.toUTCString());
+  // console.log(d5.toUTCString());
+  // console.log(d6.toUTCString());
+  // console.log(d7.toUTCString());
+  // console.log(d8.toUTCString());
   //console.log(m); 
 
   //var date = new Date(d * 1000);
+
+
+  let div_hourly_forecast = document.createElement('div');
+  div_hourly_forecast.className='in-flex-hourly-forecast';
+
+
+  let h3_hourly = document.createElement('h3');
+  h3_hourly.id='hourly-forecast-h3';
+  h3_hourly.textContent='Hourly Forecast';
+
+  let div_hour_range = document.createElement('div');
+  div_hour_range.className='hour-range';
+
+  let sectionToBody = document.getElementById("in-flex");
+ 
+
+  sectionToBody.appendChild(h3_hourly);
+
+ 
+
+let auxfirst=0;
+let auxsecond=3;
+
+  for (let i = 0; i < 8; i++) {
+   
+    let div_hours = document.createElement('div');
+    div_hours.className='hours';
+
+    let h4_hour_range_title = document.createElement('h4');
+    h4_hour_range_title.textContent='Hours range';
+
+    let h4_hour_range = document.createElement('h4');
+    h4_hour_range.textContent=auxfirst +'-'+auxsecond;
+
+    let h5_temp = document.createElement('h6');
+    h5_temp.textContent='Temperature: '+d.hourly[i].temp +'(C)';
+
+    let h5_weather = document.createElement('h6');
+    h5_weather.textContent='Weather : '+d.hourly[i].weather[0].description;
+    let h5_weather_description = document.createElement('h6');
+    h5_weather_description.textContent='Description: '+d.hourly[i].weather[0].description;
+ 
+    let img_icon=document.createElement('img');
+    img_icon.src='http://openweathermap.org/img/wn/'+d.hourly[i].weather[0].icon+'.png';
+
+    //<img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"></img>
+    //div_hours.appendChild(h4_hour_range_title);
+    
+    div_hours.appendChild(img_icon);
+    div_hours.appendChild(h4_hour_range);
+    div_hours.appendChild(h5_temp);
+    div_hours.appendChild(h5_weather);
+    //div_hours.appendChild(h5_weather_description);
+    div_hour_range.appendChild(div_hours);
+
+    auxfirst=auxfirst+3;
+    auxsecond=auxsecond+3;
+
+  }
+
+  div_hourly_forecast.appendChild(div_hour_range);
+
+  sectionToBody.appendChild(div_hourly_forecast);
+
 
 }
 
