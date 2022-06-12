@@ -274,6 +274,16 @@ const drawFiveDays = function (d) {
   }
 }
 
+
+function placeSearch() {
+  let options = {
+      types: ['(cities)'],
+  };
+
+  let input = document.getElementById('search-input');
+  let searchBox = new google.maps.places.Autocomplete(input, options);
+}
+
 // here we draw all the jsonResponse into our webPage (dinamically or by DOM)
 function drawWeather(d) {
 
@@ -282,6 +292,7 @@ function drawWeather(d) {
   drawCurrentWeather(d);
   drawhourlyForecast(d);
   drawFiveDays(d);
+  placeSearch();
   return d;
 }
 
