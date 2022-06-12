@@ -247,7 +247,6 @@ const drawFiveDays = function (d) {
     pSunrise.appendChild(labelSunrise);
     pSunrise.appendChild(pSunset);
     pSunset.appendChild(labelSunset);
-    console.log("TEST");
   }
 }
 
