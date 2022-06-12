@@ -191,6 +191,7 @@ const drawFiveDays = function (d) {
     const date = new Date (d.daily[i].dt * 1000);
     const dailyDayTemp = d.daily[i].temp.day;
     const dailyNightTemp = d.daily[i].temp.night;
+    const weather = d.daily[i].weather[0].main;
     const sunsire = new Date (d.daily[i].sunrise * 1000);
     const sunset = new Date (d.daily[i].sunset * 1000);
     
@@ -226,6 +227,14 @@ const drawFiveDays = function (d) {
     labelDailyNightTemp.id = 'label-daily-night-temp';
     labelDailyNightTemp.textContent = dailyNightTemp + "°C";
 
+    let pWeather = document.createElement('p');
+    pWeather.id = 'p-weather';
+    pWeather.textContent = "Weather: ";
+
+    let labelWeather = document.createElement('label');
+    labelWeather.id = 'label-weather';
+    labelWeather.textContent = weather;
+
     let pSunrise = document.createElement('p'); 
     pSunrise.id = 'p-sunrise';
     pSunrise.textContent = "Sunrise: ";
@@ -254,6 +263,8 @@ const drawFiveDays = function (d) {
     pDailyDayTemp.appendChild(labelDailyDayTemp);
     pDailyDayTemp.appendChild(pDailyNightTemp);
     pDailyNightTemp.appendChild(labelDailyNightTemp);
+    pWeather.appendChild(labelWeather);
+    divWeatherInfo.appendChild(pWeather); 
     pDailyDayTemp.appendChild(pSunrise);
     pSunrise.appendChild(labelSunrise);
     pSunrise.appendChild(pSunset);
