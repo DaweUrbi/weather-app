@@ -187,6 +187,7 @@ const drawFiveDays = function (d) {
   let divInFlexdailyWeather = document.createElement('div');
   divInFlexdailyWeather.className = 'in-flex-daily-weather';
 
+
   for (let i = 1; i < 6; i++) {
     const date = new Date (d.daily[i].dt * 1000);
     const dailyDayTemp = d.daily[i].temp.day;
@@ -195,6 +196,7 @@ const drawFiveDays = function (d) {
     const sunsire = new Date (d.daily[i].sunrise * 1000);
     const sunset = new Date (d.daily[i].sunset * 1000);
     
+
 
     let divWeatherInfo = document.createElement('div');
     divWeatherInfo.className = 'weather-info';
@@ -261,13 +263,13 @@ const drawFiveDays = function (d) {
     pDate.appendChild(labelDate);
     divWeatherInfo.appendChild(pDailyDayTemp);
     pDailyDayTemp.appendChild(labelDailyDayTemp);
-    pDailyDayTemp.appendChild(pDailyNightTemp);
+    divWeatherInfo.appendChild(pDailyNightTemp);
     pDailyNightTemp.appendChild(labelDailyNightTemp);
+    divWeatherInfo.appendChild(pWeather);
     pWeather.appendChild(labelWeather);
-    divWeatherInfo.appendChild(pWeather); 
-    pDailyDayTemp.appendChild(pSunrise);
+    divWeatherInfo.appendChild(pSunrise);
     pSunrise.appendChild(labelSunrise);
-    pSunrise.appendChild(pSunset);
+    divWeatherInfo.appendChild(pSunset);
     pSunset.appendChild(labelSunset);
   }
 }
