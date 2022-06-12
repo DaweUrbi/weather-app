@@ -180,12 +180,6 @@ const drawCurrentWeather = function (d) {
 
 
 const drawFiveDays = function (d) {
-
-  const dailyDayTemp = d.daily[1].temp.day;
-  const dailyNightTemp = d.daily[1].temp.night;
-  const sunsire = new Date (d.daily[1].sunrise * 1000);
-  const sunset = new Date (d.daily[1].sunset * 1000);
-
   let h3dailyWeather = document.createElement('h3');
   h3dailyWeather.id = 'h3-daily-weather';
   h3dailyWeather.textContent = "Daily Weather";
@@ -194,6 +188,12 @@ const drawFiveDays = function (d) {
   divInFlexdailyWeather.className = 'in-flex-daily-weather';
 
   for (let i = 1; i < 6; i++) {
+    const dailyDayTemp = d.daily[i].temp.day;
+    const dailyNightTemp = d.daily[i].temp.night;
+    const sunsire = new Date (d.daily[i].sunrise * 1000);
+    const sunset = new Date (d.daily[i].sunset * 1000);
+    
+
     let divWeatherInfo = document.createElement('div');
     divWeatherInfo.className = 'weather-info';
 
