@@ -95,6 +95,7 @@ const drawMainSectionInfo = function () {
 
 }
 
+
 const drawCurrentWeather = function (d) {
 
   const currentTemp = d.current.temp;
@@ -131,7 +132,7 @@ const drawCurrentWeather = function (d) {
 
   let labelCurrentTemp = document.createElement('label');
   labelCurrentTemp.id = 'label-current-temp';
-  labelCurrentTemp.textContent = currentTemp + "°";
+  labelCurrentTemp.textContent = currentTemp + "°C";
 
   let pFeelsLike = document.createElement('p');
   pFeelsLike.id = 'p-feels-like';
@@ -139,7 +140,7 @@ const drawCurrentWeather = function (d) {
 
   let labelFeelsLike = document.createElement('label');
   labelFeelsLike.id = 'label-feels-like';
-  labelFeelsLike.textContent = feelsLike + "°";
+  labelFeelsLike.textContent = feelsLike + "°C";
 
   let pUvi = document.createElement('p');
   pUvi.id = 'p-uvi';
@@ -177,6 +178,78 @@ const drawCurrentWeather = function (d) {
 
 }
 
+
+const drawFiveDays = function (d) {
+  let h3dailyWeather = document.createElement('h3');
+  h3dailyWeather.id = 'h3-daily-weather';
+  h3dailyWeather.textContent = "Daily Weather";
+
+  let divInFlexdailyWeather = document.createElement('div');
+  divInFlexdailyWeather.className = 'in-flex-daily-weather';
+
+  for (let i = 1; i < 6; i++) {
+    const dailyDayTemp = d.daily[i].temp.day;
+    const dailyNightTemp = d.daily[i].temp.night;
+    const sunsire = new Date (d.daily[i].sunrise * 1000);
+    const sunset = new Date (d.daily[i].sunset * 1000);
+    
+
+    let divWeatherInfo = document.createElement('div');
+    divWeatherInfo.className = 'weather-info';
+
+    let h3WeatherInfo = document.createElement('h3');
+    h3WeatherInfo.id = 'h3-weather-info';
+    h3WeatherInfo.textContent = "Weather Information";
+
+    let pDailyDayTemp = document.createElement('p');
+    pDailyDayTemp.id = 'p-daily-day-temp';
+    pDailyDayTemp.textContent = "Day Temperature: ";
+
+    let labelDailyDayTemp = document.createElement('label');
+    labelDailyDayTemp.id = 'label-daily-day-temp';
+    labelDailyDayTemp.textContent = dailyDayTemp + "°C";
+
+    let pDailyNightTemp = document.createElement('p'); 
+    pDailyNightTemp.id = 'p-daily-night-temp';
+    pDailyNightTemp.textContent = "Night Temperature: ";
+
+    let labelDailyNightTemp = document.createElement('label');
+    labelDailyNightTemp.id = 'label-daily-night-temp';
+    labelDailyNightTemp.textContent = dailyNightTemp + "°C";
+
+    let pSunrise = document.createElement('p'); 
+    pSunrise.id = 'p-sunrise';
+    pSunrise.textContent = "Sunrise: ";
+
+    let labelSunrise = document.createElement('label');
+    labelSunrise.id = 'label-sunrise';
+    labelSunrise.textContent = sunsire;
+
+    let pSunset = document.createElement('p');
+    pSunset.id = 'p-sunset';
+    pSunset.textContent = "Sunset: ";
+
+    let labelSunset = document.createElement('label');
+    labelSunset.id = 'label-sunset';
+    labelSunset.textContent = sunset;
+
+    let sectionToBody = document.getElementById("in-flex");
+
+    sectionToBody.appendChild(h3dailyWeather);
+    sectionToBody.appendChild(divInFlexdailyWeather);
+    divInFlexdailyWeather.appendChild(divWeatherInfo);
+    divWeatherInfo.appendChild(h3WeatherInfo);
+    divWeatherInfo.appendChild(pDailyDayTemp);
+    pDailyDayTemp.appendChild(labelDailyDayTemp);
+    pDailyDayTemp.appendChild(pDailyNightTemp);
+    pDailyNightTemp.appendChild(labelDailyNightTemp);
+    pDailyDayTemp.appendChild(pSunrise);
+    pSunrise.appendChild(labelSunrise);
+    pSunrise.appendChild(pSunset);
+    pSunset.appendChild(labelSunset);
+  }
+}
+
 // here we draw all the jsonResponse into our webPage (dinamically or by DOM)
 function drawWeather(d) {
 
@@ -184,6 +257,7 @@ function drawWeather(d) {
   drawMainSectionInfo();
   drawCurrentWeather(d);
   drawhourlyForecast(d);
+  drawFiveDays(d);
   return d;
 }
 
