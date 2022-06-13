@@ -13,9 +13,12 @@ const callLatandLon = function getLatAndLon(cityName) {
 
   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + WEATHER_API_KEY.WEATHER_API_KEY)
     .then(function (resp) { return resp.json() }) // Convert data to json
-    .then(function (data) {
-      //console.log(data);
-      //console.log(data);
+    .then(function (data) {      
+      //edit name city using the API name tag
+      let cityNameTag = document.getElementById("city_Name");
+
+      cityNameTag.textContent = data[0].name;
+
       callAPI1(data[0].lat, data[0].lon);
 
 
@@ -104,8 +107,9 @@ const drawCurrentWeather = function (d) {
   const humidity = d.current.humidity;
   const nameWeather = d.current.weather[0].main;
   //const dateInfo = new Date(d.daily[i].dt * 1000);
-  let cityName = d.timezone.toString();
-  cityName = cityName.split("/").pop();
+  let city = document.getElementById("city_Name");
+
+  let cityName = city.innerHTML;
 
   let h3CurrentWeather = document.createElement('h3');
   h3CurrentWeather.id = 'h3-current-weather';
@@ -405,5 +409,33 @@ const drawhourlyForecast = function (d) {
 
 
 }
+
+document.addEventListener('keypress', function (e) {
+
+  if (e.key === "Enter") {
+
+    let input = document.getElementById("search-input");
+
+    if (input.value != null && input.value != "") {
+
+      document.getElementById("in-flex").remove();
+      let section = document.createElement('section');
+      section.id = 'in-flex';
+      document.body.appendChild(section);
+
+      callLatandLon(input.value);
+
+    } else {
+
+      alert('please insert a valid city name ');
+
+    }
+
+
+  }
+
+});
+
+
 
 
