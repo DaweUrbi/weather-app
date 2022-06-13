@@ -184,7 +184,7 @@ const drawCurrentWeather = function (d) {
 
 const drawFiveDays = function (d) {
   let h3dailyWeather = document.createElement('h3');
-  h3dailyWeather.id = 'h3-daily-weather';
+  h3dailyWeather.id = 'daily-forecast-h3';
   h3dailyWeather.textContent = "Daily Weather";
 
   let divInFlexdailyWeather = document.createElement('div');
@@ -192,23 +192,29 @@ const drawFiveDays = function (d) {
 
 
   for (let i = 1; i < 6; i++) {
-    const date = new Date (d.daily[i].dt * 1000);
+    const date = new Date (d.daily[i].dt * 1000);  
     const dailyDayTemp = d.daily[i].temp.day;
     const dailyNightTemp = d.daily[i].temp.night;
     const weather = d.daily[i].weather[0].main;
-    const sunrise = new Date (d.daily[i].sunrise * 1000);
-    const sunset = new Date (d.daily[i].sunset * 1000);
+    // const sunrise = new Date (d.daily[i].sunrise * 1000);
+    // const sunset = new Date (d.daily[i].sunset * 1000);
+
+
+
 
     let divWeatherInfo = document.createElement('div');
-    divWeatherInfo.className = 'weather-info';
+    divWeatherInfo.className = 'days';
 
-    let h3WeatherInfo = document.createElement('h3');
-    h3WeatherInfo.id = 'h3-weather-info';
-    h3WeatherInfo.textContent = "Weather Information";
+    // let h3WeatherInfo = document.createElement('h3');
+    // h3WeatherInfo.id = 'h3-weather-info';
+    // h3WeatherInfo.textContent = "Weather Information";
+
+    let img_icon=document.createElement('img');
+    img_icon.src='http://openweathermap.org/img/wn/'+d.daily[i].weather[0].icon+'.png';
 
     let pDate = document.createElement('p');
     pDate.id = 'p-date'; 
-    pDate.textContent = "Date: ";
+    // pDate.textContent = "Date: ";
 
     let labelDate = document.createElement('label');
     labelDate.id = 'label-date';
@@ -232,46 +238,48 @@ const drawFiveDays = function (d) {
 
     let pWeather = document.createElement('p');
     pWeather.id = 'p-weather';
-    pWeather.textContent = "Weather: ";
+    pWeather.textContent = "";
 
     let labelWeather = document.createElement('label');
     labelWeather.id = 'label-weather';
     labelWeather.textContent = weather;
 
-    let pSunrise = document.createElement('p'); 
-    pSunrise.id = 'p-sunrise';
-    pSunrise.textContent = "Sunrise: ";
+    // let pSunrise = document.createElement('p'); 
+    // pSunrise.id = 'p-sunrise';
+    // pSunrise.textContent = "Sunrise: ";
 
-    let labelSunrise = document.createElement('label');
-    labelSunrise.id = 'label-sunrise';
-    labelSunrise.textContent = sunrise;
+    // let labelSunrise = document.createElement('label');
+    // labelSunrise.id = 'label-sunrise';
+    // labelSunrise.textContent = sunrise;
 
-    let pSunset = document.createElement('p');
-    pSunset.id = 'p-sunset';
-    pSunset.textContent = "Sunset: ";
+    // let pSunset = document.createElement('p');
+    // pSunset.id = 'p-sunset';
+    // pSunset.textContent = "Sunset: ";
 
-    let labelSunset = document.createElement('label');
-    labelSunset.id = 'label-sunset';
-    labelSunset.textContent = sunset;
+    // let labelSunset = document.createElement('label');
+    // labelSunset.id = 'label-sunset';
+    // labelSunset.textContent = sunset;
 
     let sectionToBody = document.getElementById("in-flex");
 
+    divWeatherInfo.appendChild(pDate);
+    pDate.appendChild(labelDate);
     sectionToBody.appendChild(h3dailyWeather);
     sectionToBody.appendChild(divInFlexdailyWeather);
     divInFlexdailyWeather.appendChild(divWeatherInfo);
-    divWeatherInfo.appendChild(h3WeatherInfo);
-    divWeatherInfo.appendChild(pDate);
-    pDate.appendChild(labelDate);
+    divWeatherInfo.appendChild(img_icon);
+    divWeatherInfo.appendChild(pWeather);
+    pWeather.appendChild(labelWeather);
+    // divWeatherInfo.appendChild(h3WeatherInfo);
     divWeatherInfo.appendChild(pDailyDayTemp);
     pDailyDayTemp.appendChild(labelDailyDayTemp);
     divWeatherInfo.appendChild(pDailyNightTemp);
     pDailyNightTemp.appendChild(labelDailyNightTemp);
-    divWeatherInfo.appendChild(pWeather);
-    pWeather.appendChild(labelWeather);
-    divWeatherInfo.appendChild(pSunrise);
-    pSunrise.appendChild(labelSunrise);
-    divWeatherInfo.appendChild(pSunset);
-    pSunset.appendChild(labelSunset);
+
+      // divWeatherInfo.appendChild(pSunrise);
+      // pSunrise.appendChild(labelSunrise);
+      // divWeatherInfo.appendChild(pSunset);
+      // pSunset.appendChild(labelSunset);
   }
 }
 
