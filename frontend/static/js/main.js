@@ -14,7 +14,7 @@ const callLatandLon = function getLatAndLon(cityName) {
 
   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + WEATHER_API_KEY.WEATHER_API_KEY)
     .then(function (resp) { return resp.json() }) // Convert data to json
-    .then(function (data) {      
+    .then(function (data) {
       //edit name city using the API name tag
       let cityNameTag = document.getElementById("city_Name");
 
@@ -78,7 +78,8 @@ const drawMainSectionInfo = function () {
   selectFavoriteCities.id = 'filter-select';
 
   let optionFilter = document.createElement('option');
-  optionFilter.value = 'favorite-cities';
+  optionFilter.id = 'favorite-cities';
+  optionFilter.value = 'fav-city';
   optionFilter.label = 'Favorite Cities';
 
   let divSearchBarCities = document.createElement('div');
@@ -97,8 +98,9 @@ const drawMainSectionInfo = function () {
   divMainSection.appendChild(divSearchBarCities);
   divSearchBarCities.appendChild(inputSearchBarCities);
 
-}
 
+
+}
 
 const drawCurrentWeather = function (d) {
 
@@ -107,9 +109,8 @@ const drawCurrentWeather = function (d) {
   const uvi = d.current.uvi;
   const humidity = d.current.humidity;
   const nameWeather = d.current.weather[0].main;
-  //const dateInfo = new Date(d.daily[i].dt * 1000);
-  let city = document.getElementById("city_Name");
 
+  let city = document.getElementById("city_Name");
   let cityName = city.innerHTML;
 
   let h3CurrentWeather = document.createElement('h3');
@@ -124,7 +125,7 @@ const drawCurrentWeather = function (d) {
   h1CityName.textContent = cityName;
 
   let btnFavorite = document.createElement('button');
-  btnFavorite.className = 'fa-solid fa-floppy-disk';
+  btnFavorite.className = 'fa-solid fa-star';
 
   let divWeatherInfo = document.createElement('div');
   divWeatherInfo.className = 'weather-info';
@@ -195,6 +196,23 @@ const drawCurrentWeather = function (d) {
   pHumidity.appendChild(pUvi);
   pUvi.appendChild(labelUvi);
 
+  btnFavorite.onclick = function () {
+
+    //* select
+    let selectElement = document.getElementById('filter-select');
+
+    //* option
+    let saveCity = document.getElementById('favorite-cities');
+    saveCity.label = cityName;
+    console.log("Save City: " + saveCity.label);
+
+    localStorage.setItem("save-city", saveCity.label);
+    console.log(localStorage.getItem("save-city"));
+
+    selectElement.appendChild(saveCity);
+
+  }
+
 }
 
 
@@ -256,22 +274,6 @@ const drawFiveDays = function (d) {
     let labelWeather = document.createElement('label');
     labelWeather.id = 'label-weather';
     labelWeather.textContent = weather;
-
-    // let pSunrise = document.createElement('p'); 
-    // pSunrise.id = 'p-sunrise';
-    // pSunrise.textContent = "Sunrise: ";
-
-    // let labelSunrise = document.createElement('label');
-    // labelSunrise.id = 'label-sunrise';
-    // labelSunrise.textContent = sunrise;
-
-    // let pSunset = document.createElement('p');
-    // pSunset.id = 'p-sunset';
-    // pSunset.textContent = "Sunset: ";
-
-    // let labelSunset = document.createElement('label');
-    // labelSunset.id = 'label-sunset';
-    // labelSunset.textContent = sunset;
 
     let sectionToBody = document.getElementById("in-flex");
 
@@ -436,28 +438,28 @@ document.addEventListener('keypress', function (e) {
 });
 
 var x = document.getElementById("demo");
- function getLocation() {
-   if (navigator.geolocation) {
+function getLocation() {
+  if (navigator.geolocation) {
     console.log('Inside getLocation');
-     navigator.geolocation.getCurrentPosition(showPosition);
-   } else { 
-     x.innerHTML = "Geolocation is not supported by this browser.";
-   }
- }
-
-
- function showPosition(position) {
-   x.innerHTML = "";
-   reverseGeo(position.coords.latitude, position.coords.longitude);
-   callAPI1(position.coords.latitude, position.coords.longitude);
-   
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
 }
 
-const reverseGeo = function getcityName(lat,lon) {
 
-  fetch(' http://api.openweathermap.org/geo/1.0/reverse?lat=' + lat + '&lon='+lon+ '&limit=5&appid=' + WEATHER_API_KEY.WEATHER_API_KEY)
+function showPosition(position) {
+  x.innerHTML = "";
+  reverseGeo(position.coords.latitude, position.coords.longitude);
+  callAPI1(position.coords.latitude, position.coords.longitude);
+
+}
+
+const reverseGeo = function getcityName(lat, lon) {
+
+  fetch(' http://api.openweathermap.org/geo/1.0/reverse?lat=' + lat + '&lon=' + lon + '&limit=5&appid=' + WEATHER_API_KEY.WEATHER_API_KEY)
     .then(function (resp) { return resp.json() }) // Convert data to json
-    .then(function (data) {      
+    .then(function (data) {
       //edit name city using the API name tag
       let cityNameTag = document.getElementById("city_Name");
 
