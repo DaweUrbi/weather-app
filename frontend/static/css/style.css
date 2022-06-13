@@ -44,31 +44,55 @@ header h1 {
   margin: 20px;
   margin-bottom: 0px;
   background-color: #fff;
+  text-align: justify;
+  text-align: center;
 }
 
 .in-flex-current-weather h1 {
   text-align: center;
 }
 
-.label-cities {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.fa-floppy-disk {
   margin-top: 10px;
+  font-size: 30px;
+  background-color: transparent;
 }
 
-#h3-weather-info {
+#p-weather-info {
   text-align: center;
   padding-top: 5px;
-  font-size: 14px;
+  font-size: 18px;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+#img-icon-weather {
+  width: 11vh;
 }
 
 .weather-info {
   background-color: rgb(214, 218, 228);
   margin: auto;
   width: 300px;
-  height: 150px;
+  height: 210px;
   margin-top: 10px;
+  text-align: center;
+  font-size: 15px;
+}
+
+#p-feels-like {
+  font-weight: bold;
+  font-family: monospace;
+}
+
+#p-current-temp {
+  font-weight: bold;
+  font-family: monospace;
+}
+
+#p-name-weather {
+  font-weight: bold;
+  font-family: monospace;
 }
 
 #daily-forecast-h3 {

@@ -100,12 +100,12 @@ const drawCurrentWeather = function (d) {
 
   const currentTemp = d.current.temp;
   const feelsLike = d.current.feels_like;
-  let cityName= d.timezone.toString();
-
-  cityName = cityName.split("/").pop();
-
   const uvi = d.current.uvi;
   const humidity = d.current.humidity;
+  const nameWeather = d.current.weather[0].main;
+  //const dateInfo = new Date(d.daily[i].dt * 1000);
+  let cityName = d.timezone.toString();
+  cityName = cityName.split("/").pop();
 
   let h3CurrentWeather = document.createElement('h3');
   h3CurrentWeather.id = 'h3-current-weather';
@@ -116,22 +116,31 @@ const drawCurrentWeather = function (d) {
 
   let h1CityName = document.createElement('h1');
   h1CityName.id = 'h1-city-name';
-  h1CityName.textContent = "City Name";
+  h1CityName.textContent = cityName;
 
-  let labelNameCity = document.createElement('label');
-  labelNameCity.className = 'label-cities';
-  labelNameCity.textContent = cityName;
+  let btnFavorite = document.createElement('button');
+  btnFavorite.className = 'fa-solid fa-floppy-disk';
 
   let divWeatherInfo = document.createElement('div');
   divWeatherInfo.className = 'weather-info';
 
-  let h3WeatherInfo = document.createElement('h3');
-  h3WeatherInfo.id = 'h3-weather-info';
+  let h3WeatherInfo = document.createElement('p');
+  h3WeatherInfo.id = 'p-weather-info';
   h3WeatherInfo.textContent = "Weather Information";
+
+  let imgIconWeather = document.createElement('img');
+  imgIconWeather.id = 'img-icon-weather';
+  imgIconWeather.src = 'http://openweathermap.org/img/wn/' + d.current.weather[0].icon + '.png';
+
+
+  let pNameWeather = document.createElement('p');
+  pNameWeather.id = 'p-name-weather';
+  pNameWeather.textContent = nameWeather;
+
 
   let pCurrentTemp = document.createElement('p');
   pCurrentTemp.id = 'p-current-temp';
-  pCurrentTemp.textContent = "Current Temperature: ";
+  pCurrentTemp.textContent = "Temperature: ";
 
   let labelCurrentTemp = document.createElement('label');
   labelCurrentTemp.id = 'label-current-temp';
@@ -151,7 +160,7 @@ const drawCurrentWeather = function (d) {
 
   let labelUvi = document.createElement('label');
   labelUvi.id = 'label-uvi';
-  labelUvi.textContent = uvi + "°";
+  labelUvi.textContent = uvi;
 
   let pHumidity = document.createElement('p');
   pHumidity.id = 'p-humidity';
@@ -159,7 +168,7 @@ const drawCurrentWeather = function (d) {
 
   let labelHumidity = document.createElement('label');
   labelHumidity.id = 'label-humidity';
-  labelHumidity.textContent = humidity + "°";
+  labelHumidity.textContent = humidity + "%";
 
 
   let sectionToBody = document.getElementById("in-flex");
@@ -167,17 +176,19 @@ const drawCurrentWeather = function (d) {
   sectionToBody.appendChild(h3CurrentWeather);
   sectionToBody.appendChild(divInFlexCurrentWeather);
   divInFlexCurrentWeather.appendChild(h1CityName);
-  divInFlexCurrentWeather.appendChild(labelNameCity);
+  divInFlexCurrentWeather.appendChild(btnFavorite);
   divInFlexCurrentWeather.appendChild(divWeatherInfo);
   divWeatherInfo.appendChild(h3WeatherInfo);
+  divWeatherInfo.appendChild(imgIconWeather);
+  divWeatherInfo.appendChild(pNameWeather);
   divWeatherInfo.appendChild(pCurrentTemp);
   pCurrentTemp.appendChild(labelCurrentTemp);
   pCurrentTemp.appendChild(pFeelsLike);
   pFeelsLike.appendChild(labelFeelsLike);
-  pFeelsLike.appendChild(pUvi);
-  pUvi.appendChild(labelUvi);
-  pUvi.appendChild(pHumidity);
+  pFeelsLike.appendChild(pHumidity);
   pHumidity.appendChild(labelHumidity);
+  pHumidity.appendChild(pUvi);
+  pUvi.appendChild(labelUvi);
 
 }
 
@@ -192,7 +203,7 @@ const drawFiveDays = function (d) {
 
 
   for (let i = 1; i < 6; i++) {
-    const date = new Date (d.daily[i].dt * 1000);  
+    const date = new Date(d.daily[i].dt * 1000);
     const dailyDayTemp = d.daily[i].temp.day;
     const dailyNightTemp = d.daily[i].temp.night;
     const weather = d.daily[i].weather[0].main;
@@ -206,11 +217,11 @@ const drawFiveDays = function (d) {
     // h3WeatherInfo.id = 'h3-weather-info';
     // h3WeatherInfo.textContent = "Weather Information";
 
-    let img_icon=document.createElement('img');
-    img_icon.src='http://openweathermap.org/img/wn/'+d.daily[i].weather[0].icon+'.png';
+    let img_icon = document.createElement('img');
+    img_icon.src = 'http://openweathermap.org/img/wn/' + d.daily[i].weather[0].icon + '.png';
 
     let pDate = document.createElement('p');
-    pDate.id = 'p-date'; 
+    pDate.id = 'p-date';
     // pDate.textContent = "Date: ";
 
     let labelDate = document.createElement('label');
@@ -225,7 +236,7 @@ const drawFiveDays = function (d) {
     labelDailyDayTemp.id = 'label-daily-day-temp';
     labelDailyDayTemp.textContent = dailyDayTemp + "°C";
 
-    let pDailyNightTemp = document.createElement('p'); 
+    let pDailyNightTemp = document.createElement('p');
     pDailyNightTemp.id = 'p-daily-night-temp';
     pDailyNightTemp.textContent = "Night Temperature: ";
 
@@ -272,17 +283,17 @@ const drawFiveDays = function (d) {
     pDailyDayTemp.appendChild(labelDailyDayTemp);
     divWeatherInfo.appendChild(pDailyNightTemp);
     pDailyNightTemp.appendChild(labelDailyNightTemp);
-      // divWeatherInfo.appendChild(pSunrise);
-      // pSunrise.appendChild(labelSunrise);
-      // divWeatherInfo.appendChild(pSunset);
-      // pSunset.appendChild(labelSunset);
+    // divWeatherInfo.appendChild(pSunrise);
+    // pSunrise.appendChild(labelSunrise);
+    // divWeatherInfo.appendChild(pSunset);
+    // pSunset.appendChild(labelSunset);
   }
 }
 
 
 function placeSearch() {
   let options = {
-      types: ['(cities)'],
+    types: ['(cities)'],
   };
 
   let input = document.getElementById('search-input');
@@ -331,51 +342,51 @@ const drawhourlyForecast = function (d) {
 
 
   let div_hourly_forecast = document.createElement('div');
-  div_hourly_forecast.className='in-flex-hourly-forecast';
+  div_hourly_forecast.className = 'in-flex-hourly-forecast';
 
 
   let h3_hourly = document.createElement('h3');
-  h3_hourly.id='hourly-forecast-h3';
-  h3_hourly.textContent='Hourly Forecast';
+  h3_hourly.id = 'hourly-forecast-h3';
+  h3_hourly.textContent = 'Hourly Forecast';
 
   let div_hour_range = document.createElement('div');
-  div_hour_range.className='hour-range';
+  div_hour_range.className = 'hour-range';
 
   let sectionToBody = document.getElementById("in-flex");
- 
+
 
   sectionToBody.appendChild(h3_hourly);
 
- 
 
-let auxfirst=0;
-let auxsecond=3;
+
+  let auxfirst = 0;
+  let auxsecond = 3;
 
   for (let i = 0; i < 8; i++) {
-   
+
     let div_hours = document.createElement('div');
-    div_hours.className='hours';
+    div_hours.className = 'hours';
 
     let h4_hour_range_title = document.createElement('h4');
-    h4_hour_range_title.textContent='Hours range';
+    h4_hour_range_title.textContent = 'Hours range';
 
     let h4_hour_range = document.createElement('h4');
-    h4_hour_range.textContent=auxfirst +'-'+auxsecond;
+    h4_hour_range.textContent = auxfirst + '-' + auxsecond;
 
     let h5_temp = document.createElement('h6');
-    h5_temp.textContent='Temperature: '+d.hourly[i].temp +'(C)';
+    h5_temp.textContent = 'Temperature: ' + d.hourly[i].temp + '(C)';
 
     let h5_weather = document.createElement('h6');
-    h5_weather.textContent='Weather : '+d.hourly[i].weather[0].description;
+    h5_weather.textContent = 'Weather : ' + d.hourly[i].weather[0].description;
     let h5_weather_description = document.createElement('h6');
-    h5_weather_description.textContent='Description: '+d.hourly[i].weather[0].description;
- 
-    let img_icon=document.createElement('img');
-    img_icon.src='http://openweathermap.org/img/wn/'+d.hourly[i].weather[0].icon+'.png';
+    h5_weather_description.textContent = 'Description: ' + d.hourly[i].weather[0].description;
+
+    let img_icon = document.createElement('img');
+    img_icon.src = 'http://openweathermap.org/img/wn/' + d.hourly[i].weather[0].icon + '.png';
 
     //<img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"></img>
     //div_hours.appendChild(h4_hour_range_title);
-    
+
     div_hours.appendChild(img_icon);
     div_hours.appendChild(h4_hour_range);
     div_hours.appendChild(h5_temp);
@@ -383,8 +394,8 @@ let auxsecond=3;
     //div_hours.appendChild(h5_weather_description);
     div_hour_range.appendChild(div_hours);
 
-    auxfirst=auxfirst+3;
-    auxsecond=auxsecond+3;
+    auxfirst = auxfirst + 3;
+    auxsecond = auxsecond + 3;
 
   }
 
