@@ -4,6 +4,7 @@ import WEATHER_API_KEY from './key.js';
 //WEATHER_API_KEY= require ( "./key.js");
 
 window.onload = function triggerPage() {
+
   callLatandLon("Vancouver");
 
 }
@@ -349,7 +350,7 @@ const drawhourlyForecast = function (d) {
   div_hourly_forecast.className = 'in-flex-hourly-forecast';
 
 
-  let h3_hourly = document.createElement('h3');
+  let h3_hourly = document.createElement('p');
   h3_hourly.id = 'hourly-forecast-h3';
   h3_hourly.textContent = 'Hourly Forecast';
 
@@ -371,31 +372,29 @@ const drawhourlyForecast = function (d) {
     let div_hours = document.createElement('div');
     div_hours.className = 'hours';
 
-    let h4_hour_range_title = document.createElement('h4');
+    let h4_hour_range_title = document.createElement('p');
     h4_hour_range_title.textContent = 'Hours range';
 
-    let h4_hour_range = document.createElement('h4');
+    let h4_hour_range = document.createElement('p');
     h4_hour_range.textContent = auxfirst + '-' + auxsecond;
 
-    let h5_temp = document.createElement('h6');
+    let h5_temp = document.createElement('p');
     h5_temp.textContent = 'Temperature: ' + d.hourly[i].temp + '(C)';
 
-    let h5_weather = document.createElement('h6');
+    let h5_weather = document.createElement('p');
     h5_weather.textContent = 'Weather : ' + d.hourly[i].weather[0].description;
-    let h5_weather_description = document.createElement('h6');
+    let h5_weather_description = document.createElement('p');
     h5_weather_description.textContent = 'Description: ' + d.hourly[i].weather[0].description;
 
     let img_icon = document.createElement('img');
     img_icon.src = 'http://openweathermap.org/img/wn/' + d.hourly[i].weather[0].icon + '.png';
 
-    //<img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"></img>
-    //div_hours.appendChild(h4_hour_range_title);
 
     div_hours.appendChild(img_icon);
     div_hours.appendChild(h4_hour_range);
     div_hours.appendChild(h5_temp);
     div_hours.appendChild(h5_weather);
-    //div_hours.appendChild(h5_weather_description);
+
     div_hour_range.appendChild(div_hours);
 
     auxfirst = auxfirst + 3;
@@ -436,6 +435,20 @@ document.addEventListener('keypress', function (e) {
 
 });
 
+
+// function getLocation() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(showPosition);
+//   } else { 
+//     x.innerHTML = "Geolocation is not supported by this browser.";
+//   }
+// }
+
+
+// function showPosition(position) {
+//   x.innerHTML = "Latitude: " + position.coords.latitude + 
+//   "<br>Longitude: " + position.coords.longitude;
+// }
 
 
 
