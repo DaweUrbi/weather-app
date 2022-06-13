@@ -379,7 +379,7 @@ const drawhourlyForecast = function (d) {
     h4_hour_range.textContent = auxfirst + '-' + auxsecond;
 
     let h5_temp = document.createElement('p');
-    h5_temp.textContent = 'Temperature: ' + d.hourly[i].temp + '(C)';
+    h5_temp.textContent = 'Temperature: ' + d.hourly[i].temp + '°C';
 
     let h5_weather = document.createElement('p');
     h5_weather.textContent = 'Weather : ' + d.hourly[i].weather[0].description;
