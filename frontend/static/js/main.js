@@ -352,7 +352,7 @@ const drawhourlyForecast = function (d) {
   div_hourly_forecast.className = 'in-flex-hourly-forecast';
 
 
-  let h3_hourly = document.createElement('p');
+  let h3_hourly = document.createElement('h3');
   h3_hourly.id = 'hourly-forecast-h3';
   h3_hourly.textContent = 'Hourly Forecast';
 
