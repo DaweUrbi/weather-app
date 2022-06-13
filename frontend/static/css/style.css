@@ -90,11 +90,11 @@ header h1 {
 .days {
   display: inline-block;
   background-color: rgb(214, 218, 228);
-  padding: 55px;
-  height: 70px;
-  width: 50px;
-  margin-left: 55px;
-  margin-top: 20px;
+  padding: 10px;
+  height: 200px;
+  width: 130px;
+  margin: 10px;
+  text-align: center;
 }
 
 #hourly-forecast-h3 {
