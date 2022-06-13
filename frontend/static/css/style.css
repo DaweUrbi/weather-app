@@ -7,9 +7,12 @@ body {
   background-color: rgba(216, 204, 204, 0.562);
 }
 
+p {
+  font-family: monospace;
+  font-weight: bold;
+}
+
 header h1 {
-  min-width: 375px;
-  max-width: 1440px;
   text-align: center;
   padding-top: 3rem;
 }
@@ -52,22 +55,17 @@ header h1 {
   text-align: center;
 }
 
-.fa-floppy-disk {
+.fa-solid {
   margin-top: 10px;
   font-size: 30px;
-  background-color: transparent;
 }
 
 #p-weather-info {
   text-align: center;
   padding-top: 5px;
-  font-size: 18px;
+  font-size: 15px;
   font-family: monospace;
   font-weight: bold;
-}
-
-#img-icon-weather {
-  width: 11vh;
 }
 
 .weather-info {
@@ -77,22 +75,7 @@ header h1 {
   height: 210px;
   margin-top: 10px;
   text-align: center;
-  font-size: 15px;
-}
-
-#p-feels-like {
-  font-weight: bold;
-  font-family: monospace;
-}
-
-#p-current-temp {
-  font-weight: bold;
-  font-family: monospace;
-}
-
-#p-name-weather {
-  font-weight: bold;
-  font-family: monospace;
+  font-size: 14px;
 }
 
 #daily-forecast-h3 {
@@ -121,8 +104,8 @@ header h1 {
   text-align: center;
 }
 
-#p-weather {
-  margin-bottom: 15px;
+#p-name-weather {
+  margin-bottom: 10px;
 }
 
 #p-daily-day-temp {
