@@ -199,9 +199,6 @@ const drawFiveDays = function (d) {
     // const sunrise = new Date (d.daily[i].sunrise * 1000);
     // const sunset = new Date (d.daily[i].sunset * 1000);
 
-
-
-
     let divWeatherInfo = document.createElement('div');
     divWeatherInfo.className = 'days';
 
@@ -275,7 +272,6 @@ const drawFiveDays = function (d) {
     pDailyDayTemp.appendChild(labelDailyDayTemp);
     divWeatherInfo.appendChild(pDailyNightTemp);
     pDailyNightTemp.appendChild(labelDailyNightTemp);
-
       // divWeatherInfo.appendChild(pSunrise);
       // pSunrise.appendChild(labelSunrise);
       // divWeatherInfo.appendChild(pSunset);
