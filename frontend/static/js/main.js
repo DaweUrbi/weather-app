@@ -5,8 +5,8 @@ import WEATHER_API_KEY from './key.js';
 
 window.onload = function triggerPage() {
 
-  callLatandLon("Vancouver");
-
+  //callLatandLon("Vancouver");
+  getLocation();
 }
 
 
@@ -435,20 +435,40 @@ document.addEventListener('keypress', function (e) {
 
 });
 
-
-// function getLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//   } else { 
-//     x.innerHTML = "Geolocation is not supported by this browser.";
-//   }
-// }
-
-
-// function showPosition(position) {
-//   x.innerHTML = "Latitude: " + position.coords.latitude + 
-//   "<br>Longitude: " + position.coords.longitude;
-// }
+var x = document.getElementById("demo");
+ function getLocation() {
+   if (navigator.geolocation) {
+    console.log('Inside getLocation');
+     navigator.geolocation.getCurrentPosition(showPosition);
+   } else { 
+     x.innerHTML = "Geolocation is not supported by this browser.";
+   }
+ }
 
 
+ function showPosition(position) {
+   x.innerHTML = "";
+   reverseGeo(position.coords.latitude, position.coords.longitude);
+   callAPI1(position.coords.latitude, position.coords.longitude);
+   
+}
+
+const reverseGeo = function getcityName(lat,lon) {
+
+  fetch(' http://api.openweathermap.org/geo/1.0/reverse?lat=' + lat + '&lon='+lon+ '&limit=5&appid=' + WEATHER_API_KEY.WEATHER_API_KEY)
+    .then(function (resp) { return resp.json() }) // Convert data to json
+    .then(function (data) {      
+      //edit name city using the API name tag
+      let cityNameTag = document.getElementById("city_Name");
+
+      cityNameTag.textContent = data[0].name;
+
+
+    })
+    .catch(function () {
+      // catch any errors
+      console.log('Error');
+    });
+
+}
 
