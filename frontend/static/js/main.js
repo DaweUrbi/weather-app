@@ -1,6 +1,7 @@
 import WEATHER_API_KEY from './key.js';
 //import fetch from "node-fetch";
 //fetch = require("node-fetch");
+//WEATHER_API_KEY= require ( "./key.js");
 
 window.onload = function triggerPage() {
 
@@ -60,6 +61,9 @@ const callAPI1 = function getWeatherFull(lat, lon) {
       // catch any errors
       console.log('Error2');
     });
+
+
+
 }
 
 
@@ -213,7 +217,6 @@ const drawCurrentWeather = function (d) {
 
 
 const drawFiveDays = function (d) {
-
   let h3dailyWeather = document.createElement('h3');
   h3dailyWeather.id = 'daily-forecast-h3';
   h3dailyWeather.textContent = "Daily Weather";
@@ -221,20 +224,28 @@ const drawFiveDays = function (d) {
   let divInFlexdailyWeather = document.createElement('div');
   divInFlexdailyWeather.className = 'in-flex-daily-forescat';
 
+
   for (let i = 1; i < 6; i++) {
     const date = new Date(d.daily[i].dt * 1000);
     const dailyDayTemp = d.daily[i].temp.day;
     const dailyNightTemp = d.daily[i].temp.night;
     const weather = d.daily[i].weather[0].main;
+    // const sunrise = new Date (d.daily[i].sunrise * 1000);
+    // const sunset = new Date (d.daily[i].sunset * 1000);
 
     let divWeatherInfo = document.createElement('div');
     divWeatherInfo.className = 'days';
+
+    // let h3WeatherInfo = document.createElement('h3');
+    // h3WeatherInfo.id = 'h3-weather-info';
+    // h3WeatherInfo.textContent = "Weather Information";
 
     let img_icon = document.createElement('img');
     img_icon.src = 'http://openweathermap.org/img/wn/' + d.daily[i].weather[0].icon + '.png';
 
     let pDate = document.createElement('p');
     pDate.id = 'p-date';
+    // pDate.textContent = "Date: ";
 
     let labelDate = document.createElement('label');
     labelDate.id = 'label-date';
@@ -274,17 +285,24 @@ const drawFiveDays = function (d) {
     divWeatherInfo.appendChild(img_icon);
     divWeatherInfo.appendChild(pWeather);
     pWeather.appendChild(labelWeather);
+    // divWeatherInfo.appendChild(h3WeatherInfo);
     divWeatherInfo.appendChild(pDailyDayTemp);
     pDailyDayTemp.appendChild(labelDailyDayTemp);
     divWeatherInfo.appendChild(pDailyNightTemp);
     pDailyNightTemp.appendChild(labelDailyNightTemp);
+    // divWeatherInfo.appendChild(pSunrise);
+    // pSunrise.appendChild(labelSunrise);
+    // divWeatherInfo.appendChild(pSunset);
+    // pSunset.appendChild(labelSunset);
   }
 }
+
 
 function placeSearch() {
   let options = {
     types: ['(cities)'],
   };
+
   let input = document.getElementById('search-input');
   let searchBox = new google.maps.places.Autocomplete(input, options);
 }
@@ -455,4 +473,3 @@ const reverseGeo = function getcityName(lat, lon) {
     });
 
 }
-
